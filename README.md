@@ -19,6 +19,7 @@ This section will only describe BGM File Adapter usage at this time.
 ## BGM File Adapter
 This tool prompts the user with two methods:
 > 1.Single File Mode: Input details manually one file at a time -- Slow but user friendly.
+
 > 2.CSV Feed Mode: Provide a CSV formated file to process in batch -- Fast but technical.
 
 **Method one** is intended for users to familiarize with the program, for each audio file proccessed it will ask the following:
@@ -40,6 +41,24 @@ Once the tool gathered the necessary information it will proceed as method one w
 If the tool were to traceback or be interrupted, a failsafe system is in place where it will register to a "progress.txt" file (currently in same directory, future versions will move this to a temp folder) all the necesasry information to resume work from the __last successfully processed file__. Meaning if the tool skipped the last few iterations it will resume before the skipping took place, this gives you a chance to also review any bad data before resuming.
 In order to resume you will have to select method two again, future versions of the tool might make it so the user is prompted immediately.
 
-# Downloads
-A binary file is provided for Windows users although be warned that Windows Defender and a few Anti-Viruses will trigger a false positive, usually under the `Win32/Wacapew.C!ml` detection. There aren't many options for me to resolve this, I can sign the code with a certificate (which costs money...) or I can [submit for review](https://www.microsoft.com/en-us/wdsi/filesubmission) to Microsoft (which likely has to be done on each update). As such I've decided to cut my losses and accept the binary file will be treated as malware, once the tools reach a state where they are unlikely to be updated frequently, I will submit them to Microsoft.
-You can read more about it [here](https://gridinsoft.com/blogs/win32-wacapew-cml-detection-analysis/).
+# Installation
+You can either install Python itself to run the source code or download the provided binary file if you're on Windows. Installing PIP is highly recommended if you opt to run the source code, if you prefer the binary please refer to the [section below]().
+## Dependencies
+BGM Data Extractor is dependent in the aforementioned LCF2XML, if you're a Windows user you can get a binary for it from https://easyrpg.org/tools/downloads/
+BGM File Adapter is dependent in both [pydub](https://github.com/jiaaro/pydub) and [ffmpeg](https://ffmpeg.org/).
+    Windows users running the source code can simply install pydub via pip `pip install pydub` and the ffmpeg dpendency should be accounted for.
+    Linux users will also have to get ffmpeg from their corresponding package manager e.g. `sudo apt install ffmpeg`
+    When opting to run the binary for Windows ffmpeg must be downloaded from [here](https://www.ffmpeg.org/download.html#build-windows) and additionally, its folder must be added to Path Environment Variables.
+BGM Wiki Bot has no known dependencies as of yet.
+
+# False Positives
+Binaries are made using [Pyinstaller](https://github.com/pyinstaller/pyinstaller/tree/c7ee9de026c2ed2bf34fc5857347b903baf284c2?tab=readme-ov-file#pyinstaller-overview) which sadly triggers a `Win32/Wacapew.C!ml` detection in Windows Defender and some Anti-Viruses (namely BitDefender). There is not much I can do about this as my only options are to pay for a certificate to sign my code or constantly upload all three programs for review to vendors like [Microsoft](https://www.microsoft.com/en-us/wdsi/filesubmission), each time a tool is updated...
+Alas, the tools provided here will unfortunately be flagged as malicious. If this is of concern to you or an annoyance, you can always run the source code directly. You can read about the type of detection here [here](https://gridinsoft.com/blogs/win32-wacapew-cml-detection-analysis/).
+
+My idea is that once the tools are unlikely to receive constant updates, I will submit them for analysis to Microsoft to hopefully remove the false positive for Defender.
+
+# Path Env. Variable
+As mentioned before, running the Windows binary requires downloading ffmpeg and then setting up a Path environment variable. This essentially means the ability to run ffmpeg as a command in Command Prompt or PowerShell, this is how ffmpeg works my tool simply runs the command discretly via pydub.
+
+TODO: Tutorial
+
