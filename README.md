@@ -70,6 +70,7 @@ My idea is that once the tools are unlikely to receive constant updates, I will 
 As mentioned before, running the Windows binary requires downloading ffmpeg and then setting up a Path Environment Variable. This essentially means the ability to run ffmpeg as a command in Command Prompt or PowerShell. This is how ffmpeg normally works, my tool simply runs the command discretly via pydub's AudioSegment object.
 
 TODO: Tutorial
+For the time being, this SO tutorial should do: https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho
 
 # Licensing
 For the time being, no licenses are being chosen since I've never coded a tool to be publicly available. But as far as I'm concerned, BGM Tools fall under the [WTFPL](https://en.wikipedia.org/wiki/WTFPL) license. As long as you're not messing with the original repo, it's all game.
