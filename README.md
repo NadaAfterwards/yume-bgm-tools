@@ -55,7 +55,7 @@ BGM Data Extractor is dependent in the EasyRPG tool [LCF2XML](https://easyrpg.or
 
 BGM File Adapter is dependent in both [pydub](https://github.com/jiaaro/pydub) and [ffmpeg](https://ffmpeg.org/).
 - Windows users running the source code can simply install pydub via pip `pip install pydub` and the ffmpeg dpendency should be accounted for. Linux users will additionally need to get ffmpeg from their corresponding package manager e.g. `sudo apt install ffmpeg`
-- When opting to run the binary for Windows ffmpeg must be downloaded from [here](https://www.ffmpeg.org/download.html) and additionally, its folder must be added to Path Environment Variables. Refer to "Path Env. Variable".
+- When opting to run the binary for Windows ffmpeg must be downloaded from [here](https://www.ffmpeg.org/download.html) and additionally, its folder must be added to "Path" in Environment Variables. Refer to "Path Env. Variable" for an explanation.
     
 BGM Wiki Bot has no known dependencies as of yet.
 
@@ -67,10 +67,33 @@ Alas, the tools provided here will unfortunately be flagged as malicious. If thi
 My idea is that once the tools are unlikely to receive constant updates, I will submit them for analysis to Microsoft to hopefully remove the false positive on Defender.
 
 # Path Env. Variable
-As mentioned before, running the Windows binary requires downloading ffmpeg and then setting up a Path Environment Variable. This essentially means the ability to run ffmpeg as a command in Command Prompt or PowerShell. This is how ffmpeg normally works, my tool simply runs the command discretly via pydub's AudioSegment object.
+Some binaries might require setting up variables in the System Environment Variables, this is generally handled automatically in Linux by your package manager bur Windows users have to do this manually. This essentially means the ability to run a tool like ffmpeg as a command in Command Prompt or PowerShell. For the example mentioned that is how ffmpeg normally works, my tool simply runs the command discretly via pydub's AudioSegment object. Following is a step-by-step guide for Windows users.
 
-TODO: Tutorial
-For the time being, this SO tutorial should do: https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho
+Head on to Start and type "env", the following result should come up:
+![Look for the "Edit the system environment variables" option](https://i.ibb.co/Ch3PDyC/SEV1.png)
+
+Once opened it will display this window, click on the "Environment Variables..." button at the bottom:
+![A window titled "System Properties" will open up, with the tab "Advanced" pre-selected](https://i.ibb.co/zHFWWy5/SEV2.png)
+
+You will now be prompted with a new window. You have the option to set up the Environment Variable for your user (top half) or for the entire system (top bottom), choice is up to you. If a variable "Path" exists select it and click "Edit..." otherwise create it with "New..."
+![Another window "Environment Variables" opens up](https://i.ibb.co/Fzt6D2h/SEV3.png)
+
+When clicking "Edit..." you will be prompted with this new window, this displays all the values the variable has:
+![Yet another window, the buttoms are on the right side bar](https://i.ibb.co/H7WxWX2/SEV4.png)
+
+Click on the "New" button and then "Browse..." to locate the directory to the program (e.g. ffmpeg):
+![Christ almighty Microsoft, more windows. This is that really awful "Browse For Folder" window you might be familiar with](https://i.ibb.co/f0P621J/SEV5.png)
+
+If done correctly you should now be set up. Note that my list of Environment Variables (both user level and system level) are cluttered, your ammount of variables depenends on the current or previous programs you have installed. Same goes for the values of each variable.
+
+Also note that in my case I do not have a value for ffmpeg, this is because my system level Path variable contains the value. I've only shown you my user level Path variable.
+
+To test that everything works you can open Command Prompt or Powershell, in ffmpeg's case you can do `ffmpeg -version` to test if it works:
+![Running the command in Power Shell and it spews a bunch of nonsense but nothing about the command not being found](https://i.ibb.co/bbPDZ0r/SEV6.png)
+
+You're now good to go.
+
+If you had to create Path instead of editing then process will be a lot more straightforward, give it the name "Path" and for the value "Browse files..."
 
 # Licensing
 For the time being, no licenses are being chosen since I've never coded a tool to be publicly available. But as far as I'm concerned, BGM Tools fall under the [WTFPL](https://en.wikipedia.org/wiki/WTFPL) license. As long as you're not messing with the original repo, it's all game.
