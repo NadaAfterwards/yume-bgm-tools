@@ -1,5 +1,5 @@
-# BUILD: 2024-07-13 16:45 UTC-03
-# Version: 1.0
+# BUILD: 2024-07-20 16:00 UTC-03
+# Version: 1.0.1
 import csv
 import os
 import time
@@ -10,7 +10,7 @@ from Classes import text
 from datetime import datetime
 
 def method_two(last_completed_index, csv_file, bgm_path):
-    with open(csv_file, 'r') as file:
+    with open(csv_file, 'r', encoding='utf-8') as file:
         bgm_list = csv.reader(file)
         # skip rows if resuming a job
         for index, row in enumerate(bgm_list):
@@ -37,7 +37,7 @@ def method_two(last_completed_index, csv_file, bgm_path):
             output_file = InputParser.compose_output_name(game_name, input_file, tempo)
             AudioProcessor.process_audio(input_file, output_file, tempo)
             # record progress
-            with open('progress.txt', 'r+') as file:
+            with open('progress.txt', 'r+', encoding='utf-8') as file:
                 lines = file.readlines()
                 lines[0] = str(index + 1) + "\n"
                 file.seek(0)
@@ -45,7 +45,7 @@ def method_two(last_completed_index, csv_file, bgm_path):
     # reset progress, triggers a new job
     # NOTE: I no longer remember why I'm reseting the count
     # It's probably more logical to just clear the file
-    with open('progress.txt', 'r+') as file:
+    with open('progress.txt', 'r+', encoding='utf-8') as file:
         lines = file.readlines()
         lines[0] = "0\n"
         file.seek(0)
@@ -101,7 +101,7 @@ if int(method_chosen) == 1:
 elif int(method_chosen) == 2:
     # attempt to retrieve previous job info
     try:
-        with open('progress.txt', 'r') as file:
+        with open('progress.txt', 'r', encoding='utf-8') as file:
             lines = file.readlines()
             x = int(lines[0].strip())
             y = lines[1].strip()
@@ -122,7 +122,7 @@ elif int(method_chosen) == 2:
                 exit()
             elif resume in ['no', 'n']:
                 # clean progress.txt
-                with open('progress.txt', 'w'):
+                with open('progress.txt', 'w', encoding='utf-8'):
                     pass
                 break
             else:
@@ -138,7 +138,7 @@ elif int(method_chosen) == 2:
     print(f"\nProcessing {csv_file}... if any rows cause errors they will be skipped.")
     print("If the tool exits prematurely, it will resume from the last processed file when re-run.\n")
     time.sleep(5)
-    with open('progress.txt', 'w') as file:
+    with open('progress.txt', 'w', encoding='utf-8') as file:
         file.write("0\n")
         file.write(csv_file + "\n")
         file.write(bgm_path + "\n")

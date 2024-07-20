@@ -66,7 +66,7 @@ def parse_csv(csv):
     if ext not in ['.csv', '.txt']:
         print("\nThe CSV file doesn't use the allowed extensions (.csv and .txt). Please modify the file.")
         return parse_csv(input("**Name of your CSV file: "))
-    with open(csv, 'r') as file:
+    with open(csv, 'r', encoding='utf-8') as file:
         line = file.readline().strip()
         if ',' not in line:
             print("\nThe CSV file doesn't use commas as delimeters. Please modify the file.")
