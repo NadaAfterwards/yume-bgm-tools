@@ -75,8 +75,10 @@ You're now good to go.
 If you had to create PATH instead of editing then the process will be a lot more straightforward, give it the name "Path" and for the value "Browse files..."
 
 # Licensing
-The project Yume BGM Tools as well as its collection of software programs are licensed under the Do What The F*ck You Want To Public License [(WTFPL)](http://www.wtfpl.net/).
-The licenses for the dependencies used go as follows:
+This project "Yume BGM Tools" as well as its collection of software programs are all licensed under the `Do What The F*ck You Want To Public License` [(WTFPL)](http://www.wtfpl.net/).
+
+The third party licenses can be found inside each tool's folder under `third-parties-LICENSE`, they're copied *exact* from each repository.
 - pydub: Licensed under [MIT](https://opensource.org/license/mit).
 - FFmpeg: Licensed under [LGPL 2.0](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) and [LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).
 - liblcf: Licensed under [MIT](https://opensource.org/license/mit).
+- pyinstaller: Licensed under [GPL](https://www.gnu.org/licenses/gpl-3.0.en.html).
