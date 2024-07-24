@@ -41,6 +41,9 @@ Note: MIDI was included in the filter list up to version 1.0.1.
 - Loops it until it reaches one minute (60000 miliseconds)
 - Exports to OGG Vorbis in Output folder
 
+The output file will have a file name format to match the wiki styleguide:
+`[name of game]_[name of file]_[tempo]`
+
 ## Dev. Comments:
 
 ### Ideas
